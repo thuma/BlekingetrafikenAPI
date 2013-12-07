@@ -71,42 +71,11 @@ foreach($all as $key => $station)
 		//open connection
 		$ch = curl_init('http://www.reseplaneraren.blekingetrafiken.se/v2/querypage_adv.aspx');
 			
-		$fields_string = 'inpPointFr_ajax='
-		'&inpPointTo_ajax='
-		'&inpPointInterm_ajax='
-		'&selRegionFr=741'
-		'&inpPointFr='
-		'&optTypeFr=0'
-		'&inpPointTo='
-		'&optTypeTo=0'
-		'&inpPointInterm='
-		'&selDirection=0'
-		'&inpTime=23%3A03'
-		'&inpDate=2013-12-07'
-		'&optReturn=0'
-		'&selDirection2=0'
-		'&inpTime2=03%3A03'
-		'&inpDate2=2013-12-08'
-		'&trafficmask=1'
-		'&trafficmask=2'
-		'&trafficmask=4'
-		'&trafficmask=8'
-		'&trafficmask=16'
-		'&trafficmask=32'
-		'&trafficmask=64'
-		'&trafficmask=128'
-		'&trafficmask=256'
-		'&selChangeTime=0'
-		'&selWalkSpeed=0'
-		'&selPriority=0'
-		'&cmdAction=pastefrommap'
-		'&EU_Spirit=False'
-		'&TNSource=BLEKINGE'
-		'&SupportsScript=True'
-		'&Language=se'
-		'&VerNo=7.1.1.2.0.38p3'
-		'&Source=querypage_adv'
-		'&MapParams=0%7C'.$station->id.'%7C'.rawurlencode(utf8_decode($station->cleanname));
+		$fields_string = 'inpPointFr_ajax=&inpPointTo_ajax=&inpPointInterm_ajax=&selRegionFr=741'.
+		'&selPointFr='.rawurlencode(utf8_decode($station->cleanname)).'%7C'.$station->id.'%7C0'.
+		'&inpPointFr=Fabbem%E5la+v%E4gsk%E4l'.
+		'&optTypeFr=0&inpPointTo=&optTypeTo=0&selDirection=0&inpTime=23%3A03&inpDate=2013-12-07&optReturn=0&selDirection2=0&inpTime2=03%3A03&inpDate2=2013-12-08&trafficmask=1&trafficmask=2&trafficmask=4&trafficmask=8&trafficmask=16&trafficmask=32&trafficmask=64&trafficmask=128&trafficmask=256&selChangeTime=0&selWalkSpeed=0&selPriority=0&cmdAction=pastefrommap&EU_Spirit=False&TNSource=BLEKINGE&SupportsScript=True&Language=se&VerNo=7.1.1.2.0.38p3'.
+		'&Source=querypage_adv&MapParams=1%7C0%7Cnull%7C'.rawurlencode(utf8_decode($station->cleanname));
 		
 		curl_setopt($ch,CURLOPT_POST, TRUE);
 		curl_setopt($ch,CURLOPT_RETURNTRANSFER, TRUE);
